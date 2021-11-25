@@ -12,25 +12,22 @@ public class Driver {
             int last = sc.nextInt();
             // int inIndex = initial / 2;
             int lasIndex = last / 2;
-            GroundStation gStation = new GroundStation(initial);
-            GroundStation lStation = new GroundStation(last);
-            int leoSatIndex = gStation.sendMessage();
-            LEOSatellite lSatellite = new LEOSatellite(leoSatIndex, initial, last);
-            int x = lSatellite.sendMessage();
+            new GroundStation(initial, last);
+            // GroundStation lStation = new GroundStation(last, last);
+            // int leoSatIndex = gStation.sendMessage();
+            LEOSatellite lSatellite = new LEOSatellite(initial / 2, initial, last);
+            int x = lSatellite.getCase();
             if (x == 0) {
-                lStation.receiveMessage();
+                new GroundStation(last, last);
 
             } else if (x == 1) {
-                LEOSatellite lSatellite2 = new LEOSatellite(lasIndex, last, last);
-                lSatellite2.sendMessage();
-                lStation.receiveMessage();
+                new LEOSatellite(lasIndex, last, last);
+                new GroundStation(last, last);
 
             } else {
-                GEOSatellite gSatellite = new GEOSatellite(leoSatIndex, lasIndex);
-                gSatellite.sendMessage();
-                LEOSatellite lSatellite2 = new LEOSatellite(lasIndex, last, last);
-                lSatellite2.sendMessage();
-                lStation.receiveMessage();
+                new GEOSatellite(lasIndex);
+                new LEOSatellite(lasIndex, last, last);
+                new GroundStation(last, last);
 
             }
 

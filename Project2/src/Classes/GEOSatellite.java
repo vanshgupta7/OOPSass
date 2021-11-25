@@ -1,19 +1,27 @@
 package Classes;
 
-public class GEOSatellite implements CommunicationInterface {
-    int fIndex;
+public class GEOSatellite implements CommunicationInterface, Runnable {
     int lasIndex;
 
-    public GEOSatellite(int fIndex, int lasIndex) {
-        this.fIndex = fIndex;
+    public GEOSatellite(int lasIndex) {
         this.lasIndex = lasIndex;
+        Thread t2 = new Thread(this, "GEO0 Satellite");
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+        }
+        System.out.print(t2.getName() + " thread started:");
+        t2.start();
 
     }
 
-    public int sendMessage() {
+    public void sendMessage() {
         System.out.println("GEO0 Satellite sends message to LEO" + lasIndex + " Satellite");
-        return 0;
 
+    }
+
+    public void run() {
+        this.sendMessage();
     }
 
     public void receiveMessage() {

@@ -1,7 +1,7 @@
 package Classes;
 
 public interface CommunicationInterface {
-    int sendMessage();
+    void sendMessage();
 
     void receiveMessage();
 
